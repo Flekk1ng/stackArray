@@ -37,22 +37,13 @@ private:
 public:
     void push(Car item)
     {
-        for (int i = count; i > 0; i--)
-        {
-            stack[i] = stack[i - 1];
-        }
-
-        stack[0] = item;
+        stack[count] = item;
         count++;
     }
 
     Car pop()
     {
-        Car item = stack[0];
-        for (int i = 1; i < count; i++)
-        {
-            stack[i - 1] = stack[i];
-        }
+        Car item = stack[count - 1];
         count--;
         return item;
     }
@@ -67,7 +58,7 @@ public:
 
     void printStack()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = count - 1; i >= 0; i--)
         {
             printElement(stack[i]);
         }
@@ -102,6 +93,7 @@ int main()
     while (!arrStack.isEmpty())
     {
         Car item = arrStack.pop();
+        cout << endl;
         cout << "Pop item: ";
         printElement(item);
         arrStack.printStack();
